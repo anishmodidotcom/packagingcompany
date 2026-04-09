@@ -5,6 +5,7 @@ import Nav from "@/components/nav/Nav";
 import Hero from "@/components/sections/Hero";
 import ProofMarquee from "@/components/sections/ProofMarquee";
 import StatsBand from "@/components/sections/StatsBand";
+import BoxAssemblyScroll from "@/components/sections/BoxAssemblyScroll";
 import BentoProducts from "@/components/sections/BentoProducts";
 import IndustriesSplit from "@/components/sections/IndustriesSplit";
 import AltpacMap from "@/components/sections/AltpacMap";
@@ -29,6 +30,7 @@ export default function Home() {
         <Hero onSampleClick={openModal} />
         <ProofMarquee />
         <StatsBand />
+        <BoxAssemblyScroll />
         <BentoProducts />
         <IndustriesSplit />
         <AltpacMap />

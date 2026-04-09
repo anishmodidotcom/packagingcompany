@@ -206,8 +206,7 @@ export interface Plant {
   state: string;
   capacity: string;
   specialty: string;
-  x: number;
-  y: number;
+  coordinates: [number, number]; // [longitude, latitude]
 }
 
 export const plants: Plant[] = [
@@ -217,8 +216,7 @@ export const plants: Plant[] = [
     state: "Gujarat",
     capacity: "25M+ units/month",
     specialty: "Folding cartons + luxury packaging",
-    x: 170,
-    y: 240,
+    coordinates: [72.5714, 23.0225],
   },
   {
     name: "West Hub",
@@ -226,8 +224,7 @@ export const plants: Plant[] = [
     state: "Maharashtra",
     capacity: "15M+ units/month",
     specialty: "E-commerce + retail bags",
-    x: 165,
-    y: 305,
+    coordinates: [72.8777, 19.076],
   },
   {
     name: "South-West Facility",
@@ -235,8 +232,7 @@ export const plants: Plant[] = [
     state: "Karnataka",
     capacity: "12M+ units/month",
     specialty: "Custom food packaging + Sweetdisp",
-    x: 195,
-    y: 395,
+    coordinates: [77.5946, 12.9716],
   },
   {
     name: "South Hub",
@@ -244,8 +240,7 @@ export const plants: Plant[] = [
     state: "Tamil Nadu",
     capacity: "10M+ units/month",
     specialty: "Rigid boxes + export",
-    x: 235,
-    y: 400,
+    coordinates: [80.2707, 13.0827],
   },
   {
     name: "North India Hub",
@@ -253,8 +248,7 @@ export const plants: Plant[] = [
     state: "Delhi",
     capacity: "8M+ units/month",
     specialty: "North India distribution + e-commerce boxes",
-    x: 210,
-    y: 160,
+    coordinates: [77.1025, 28.7041],
   },
 ];
 
@@ -362,9 +356,10 @@ export const infrastructurePanels = [
     span: "col-span-5" as const,
   },
   {
-    image: PRODUCT_DISPLAY,
+    image: FACTORY_FLOOR,
     eyebrow: "THE MACHINERY",
     headline: "Koenig & Bauer. BOBST. Kongsberg. AOKE. The industry's best.",
     span: "col-span-7" as const,
+    objectPosition: "70% center",
   },
 ];

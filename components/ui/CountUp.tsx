@@ -26,7 +26,7 @@ export default function CountUp({
   style,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
   const prefersReducedMotion = useReducedMotion();
   const motionVal = useMotionValue(0);
   const [display, setDisplay] = useState("0");

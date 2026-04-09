@@ -53,7 +53,7 @@ export default function Infrastructure() {
                 delay: i * 0.1,
                 ease: [0.25, 0.1, 0.25, 1],
               }}
-              className="group relative overflow-hidden rounded-3xl"
+              className="group relative overflow-hidden rounded-3xl min-h-[240px]"
               style={{
                 gridColumn: panel.span === "col-span-7" ? "span 7" : "span 5",
               }}
@@ -64,9 +64,15 @@ export default function Infrastructure() {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{
+                  objectPosition:
+                    "objectPosition" in panel
+                      ? (panel as { objectPosition: string }).objectPosition
+                      : "center",
+                }}
               />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-forest-950/20 to-transparent" />
+              {/* Strengthened gradient overlay for legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-transparent" />
               {/* Text overlay */}
               <div className="absolute bottom-0 left-0 p-6 transition-transform duration-300 group-hover:-translate-y-1 md:p-8">
                 <span className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-kraft-500">

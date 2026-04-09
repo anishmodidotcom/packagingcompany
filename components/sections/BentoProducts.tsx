@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
@@ -10,18 +10,17 @@ import { products } from "@/lib/data";
 
 const filterChips = ["All", "By Industry", "By Material", "By Volume"];
 
-// Bento layout: [gridArea, colSpan, rowSpan] — maps products to bento positions
 const bentoLayout = [
-  { area: "luxury", colStart: 1, colEnd: 7, rowStart: 1, rowEnd: 3 },  // Luxury (large)
-  { area: "ecombox", colStart: 7, colEnd: 10, rowStart: 1, rowEnd: 2 }, // E-commerce Boxes
-  { area: "retail", colStart: 10, colEnd: 13, rowStart: 1, rowEnd: 2 }, // Retail Bags
-  { area: "food", colStart: 7, colEnd: 13, rowStart: 2, rowEnd: 3 },    // Custom Food (wide)
-  { area: "folding", colStart: 1, colEnd: 5, rowStart: 3, rowEnd: 4 },  // Folding Cartons
-  { area: "rigid", colStart: 5, colEnd: 9, rowStart: 3, rowEnd: 4 },    // Rigid Boxes
-  { area: "mailer", colStart: 9, colEnd: 13, rowStart: 3, rowEnd: 4 },  // E-commerce Mailers
-  { area: "sos", colStart: 1, colEnd: 5, rowStart: 4, rowEnd: 5 },      // SOS Bags
-  { area: "vbottom", colStart: 5, colEnd: 9, rowStart: 4, rowEnd: 5 },  // V-Bottom Bags
-  { area: "sweet", colStart: 9, colEnd: 13, rowStart: 4, rowEnd: 5 },   // Sweetdisp
+  { colStart: 1, colEnd: 7, rowStart: 1, rowEnd: 3 },   // Luxury (large hero)
+  { colStart: 7, colEnd: 10, rowStart: 1, rowEnd: 2 },   // E-commerce Boxes
+  { colStart: 10, colEnd: 13, rowStart: 1, rowEnd: 2 },  // Retail Bags
+  { colStart: 7, colEnd: 13, rowStart: 2, rowEnd: 3 },   // Custom Food (wide)
+  { colStart: 1, colEnd: 5, rowStart: 3, rowEnd: 4 },    // Folding Cartons
+  { colStart: 5, colEnd: 9, rowStart: 3, rowEnd: 4 },    // Rigid Boxes
+  { colStart: 9, colEnd: 13, rowStart: 3, rowEnd: 4 },   // E-commerce Mailers
+  { colStart: 1, colEnd: 5, rowStart: 4, rowEnd: 5 },    // SOS Bags
+  { colStart: 5, colEnd: 9, rowStart: 4, rowEnd: 5 },    // V-Bottom Bags
+  { colStart: 9, colEnd: 13, rowStart: 4, rowEnd: 5 },   // Sweetdisp
 ];
 
 interface TileProps {
@@ -59,14 +58,17 @@ function ProductTile({ product, isLarge }: TileProps) {
       onMouseLeave={handleMouseLeave}
       whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
       transition={{ type: "spring", stiffness: 120, damping: 20 }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-white"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white"
       style={{
         transform: `perspective(800px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
         transition: "transform 0.15s ease-out",
       }}
     >
-      {/* Image */}
-      <div className={`relative w-full ${isLarge ? "flex-1 min-h-0" : "aspect-[4/3]"}`}>
+      {/* Image — always rendered, fills upper portion */}
+      <div
+        className="relative w-full shrink-0"
+        style={{ flex: isLarge ? "1 1 0%" : "none", aspectRatio: isLarge ? undefined : "4/3" }}
+      >
         <Image
           src={product.image}
           alt={product.name}
@@ -77,7 +79,7 @@ function ProductTile({ product, isLarge }: TileProps) {
       </div>
 
       {/* Content */}
-      <div className="relative flex flex-col gap-1 p-5">
+      <div className="relative flex shrink-0 flex-col gap-1 p-5">
         <h3 className="font-display text-lg font-medium text-forest-950 md:text-xl">
           {product.name}
         </h3>
@@ -87,26 +89,33 @@ function ProductTile({ product, isLarge }: TileProps) {
         </span>
       </div>
 
-      {/* Hover overlay with specs */}
-      <motion.div
-        initial={{ y: "100%" }}
-        animate={{ y: hovered ? "0%" : "100%" }}
-        transition={{ type: "spring", stiffness: 200, damping: 24 }}
-        className="absolute inset-x-0 bottom-0 rounded-b-3xl bg-forest-950/95 px-5 py-4"
-        style={{ backdropFilter: "blur(8px)" }}
-      >
-        <div className="flex flex-col gap-1.5 text-sm text-cream-50/80">
-          <span>
-            <span className="text-kraft-500">MOQ:</span> {product.moq}
-          </span>
-          <span>
-            <span className="text-kraft-500">Lead time:</span> {product.leadTime}
-          </span>
-          <span>
-            <span className="text-kraft-500">Materials:</span> {product.materials}
-          </span>
-        </div>
-      </motion.div>
+      {/* Hover overlay with specs — only visible on hover */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ type: "spring", stiffness: 200, damping: 24 }}
+            className="absolute inset-x-0 bottom-0 rounded-b-3xl bg-forest-950/95 px-5 py-4"
+            style={{ backdropFilter: "blur(8px)" }}
+          >
+            <div className="flex flex-col gap-1.5 text-sm text-cream-50/80">
+              <span>
+                <span className="text-kraft-500">MOQ:</span> {product.moq}
+              </span>
+              <span>
+                <span className="text-kraft-500">Lead time:</span>{" "}
+                {product.leadTime}
+              </span>
+              <span>
+                <span className="text-kraft-500">Materials:</span>{" "}
+                {product.materials}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

@@ -127,8 +127,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-cream-50/10 pt-8 md:flex-row">
+        {/* Bottom bar — single row, copyright left, tagline right */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-cream-50/10 pt-8">
           <div className="flex flex-wrap items-center gap-4 text-xs text-cream-50/40">
             <span>© 2026 Altpac. All rights reserved.</span>
             <a href="#" className="hover:text-cream-50/60">
@@ -141,7 +141,7 @@ export default function Footer() {
               Cookies
             </a>
           </div>
-          <span className="font-display text-xs italic text-cream-50/30">
+          <span className="font-display text-sm italic text-cream-50/30">
             Crafted with care for brands that ship at scale
           </span>
         </div>
