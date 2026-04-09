@@ -26,8 +26,8 @@ const PLANTS: Plant[] = [
     role: "NORTH INDIA HUB",
     specialty: "North India distribution + e-commerce boxes",
     capacity: "8M+ units/month",
-    top: "22%",
-    left: "47%",
+    top: "23%",
+    left: "37%",
   },
   {
     id: "ahm",
@@ -36,8 +36,8 @@ const PLANTS: Plant[] = [
     role: "FLAGSHIP PLANT",
     specialty: "Folding cartons + luxury packaging",
     capacity: "25M+ units/month",
-    top: "39%",
-    left: "22%",
+    top: "40%",
+    left: "26%",
   },
   {
     id: "mum",
@@ -46,8 +46,8 @@ const PLANTS: Plant[] = [
     role: "WEST HUB",
     specialty: "E-commerce + retail bags",
     capacity: "15M+ units/month",
-    top: "48%",
-    left: "24%",
+    top: "52%",
+    left: "27%",
   },
   {
     id: "blr",
@@ -56,8 +56,8 @@ const PLANTS: Plant[] = [
     role: "SOUTH-WEST FACILITY",
     specialty: "Custom food packaging + Sweetdisp",
     capacity: "12M+ units/month",
-    top: "70%",
-    left: "38%",
+    top: "75%",
+    left: "35%",
   },
   {
     id: "mad",
@@ -66,8 +66,8 @@ const PLANTS: Plant[] = [
     role: "SOUTH HUB",
     specialty: "Rigid boxes + export",
     capacity: "10M+ units/month",
-    top: "68%",
-    left: "48%",
+    top: "73%",
+    left: "42%",
   },
 ];
 
