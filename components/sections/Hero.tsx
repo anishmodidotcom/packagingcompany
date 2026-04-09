@@ -8,7 +8,7 @@ import {
   useReducedMotion,
 } from "motion/react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Package, Truck } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { FACTORY_FLOOR } from "@/lib/images";
@@ -106,17 +106,40 @@ export default function Hero({
                 onClick={onSampleClick}
                 className="text-base"
               >
-                Request a Sample <ArrowRight className="h-4 w-4" />
+                Get a Quote in 24 Hours <ArrowRight className="h-4 w-4" />
               </Button>
               <Button variant="secondary" className="text-base">
                 Explore Our Work
               </Button>
             </motion.div>
 
+            {/* Promise row */}
+            <motion.div
+              {...animProps(0.55)}
+              className="mt-10 flex flex-col gap-4 md:flex-row md:gap-8"
+            >
+              {[
+                { icon: Clock, label: "24-hour quotes", sub: "Real quotes in 24 hours, not 24 days" },
+                { icon: Package, label: "7-day samples", sub: "Hold your product in your hands next week" },
+                { icon: Truck, label: "Free shipping", sub: "From our fleet to your warehouse" },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.label} className="flex items-start gap-3">
+                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-kraft-500" strokeWidth={1.5} />
+                    <div>
+                      <span className="block text-sm font-medium text-cream-50">{item.label}</span>
+                      <span className="text-xs text-cream-50/50">{item.sub}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+
             {/* Certifications strip */}
             <motion.div
-              {...animProps(0.6)}
-              className="mt-12 border-t border-cream-50/10 pt-6"
+              {...animProps(0.65)}
+              className="mt-8 border-t border-cream-50/10 pt-6"
             >
               <span className="mb-3 block text-xs font-medium uppercase tracking-[0.12em] text-cream-50/40">
                 Certified by

@@ -74,6 +74,7 @@ function ProductTile({ product, isLarge }: TileProps) {
         transformPerspective: 1000,
       }}
       data-cursor-hover
+      data-product-tile={product.slug}
     >
       <div
         className="relative w-full shrink-0"
@@ -114,7 +115,7 @@ function ProductTile({ product, isLarge }: TileProps) {
           hover: { opacity: 1, y: 0 },
         }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-        className="absolute inset-x-0 bottom-0 rounded-b-3xl bg-forest-950/95 px-5 py-4"
+        className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-3xl bg-forest-950/95 px-5 py-4 opacity-0"
         style={{ backdropFilter: "blur(8px)" }}
       >
         <div className="flex flex-col gap-1.5 text-sm text-cream-50/80">

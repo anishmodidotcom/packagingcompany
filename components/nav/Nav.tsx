@@ -103,7 +103,7 @@ export default function Nav({
             onClick={onSampleClick}
             className="rounded-full bg-kraft-500 px-5 py-2 text-sm font-medium text-forest-950 transition-colors duration-200 hover:bg-kraft-600"
           >
-            Request a Sample
+            Get a Quote
           </button>
         </div>
 

@@ -61,7 +61,7 @@ export default function FinalCTA({
             onClick={onSampleClick}
             className="text-base"
           >
-            Request a Sample
+            Get a Quote in 24 Hours
           </Button>
           <Button variant="secondary" className="text-base">
             Talk to a Packaging Strategist
