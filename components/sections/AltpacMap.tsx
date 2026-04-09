@@ -134,8 +134,13 @@ export default function AltpacMap() {
                   {/* Pulsing outer ring */}
                   {!prefersReducedMotion && (
                     <motion.div
-                      className="absolute top-1/2 left-1/2 h-8 w-8 rounded-full border-2 border-kraft-500"
-                      style={{ transform: "translate(-50%, -50%)" }}
+                      className="absolute top-1/2 left-1/2 rounded-full border-2 border-kraft-500 pointer-events-none"
+                      style={{
+                        width: 32,
+                        height: 32,
+                        marginTop: -16,
+                        marginLeft: -16,
+                      }}
                       animate={{
                         scale: [1, 2, 1],
                         opacity: [0.7, 0, 0.7],
