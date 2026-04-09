@@ -70,7 +70,7 @@ export default function Hero({
                   {...animProps(line.delay)}
                   className="block font-display font-medium text-cream-50"
                   style={{
-                    fontSize: "clamp(3.5rem, 7vw, 7.5rem)",
+                    fontSize: "clamp(3rem, 5.5vw, 6rem)",
                     letterSpacing: "-0.03em",
                     lineHeight: 0.95,
                   }}

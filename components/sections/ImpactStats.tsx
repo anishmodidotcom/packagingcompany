@@ -24,7 +24,7 @@ export default function ImpactStats() {
   return (
     <section
       id="sustainability"
-      className="relative bg-cream-50 py-24 md:py-32 lg:py-40 overflow-hidden"
+      className="relative bg-cream-50 py-32 md:py-44 lg:py-56 overflow-hidden"
     >
       <Grain />
       <Container className="relative z-10">
@@ -39,7 +39,7 @@ export default function ImpactStats() {
           <h2
             className="font-display font-medium text-forest-950"
             style={{
-              fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
+              fontSize: "clamp(2rem, 3.75vw, 3.75rem)",
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
             }}
@@ -76,7 +76,7 @@ export default function ImpactStats() {
                   target={stat.value}
                   suffix={stat.suffix}
                   isYear={"isYear" in stat && stat.isYear ? true : false}
-                  className="font-display text-6xl font-light text-forest-950 md:text-8xl lg:text-[96px]"
+                  className="font-display text-5xl font-light text-forest-950 md:text-6xl lg:text-7xl"
                   style={{
                     letterSpacing: "-0.04em",
                     lineHeight: 0.9,

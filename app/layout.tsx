@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import CustomCursor from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -47,6 +48,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-cream-50 text-ink-900 font-body antialiased">
         {children}
+        <CustomCursor />
       </body>
     </html>
   );

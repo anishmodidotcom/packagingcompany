@@ -13,7 +13,7 @@ export default function Infrastructure() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative bg-forest-950 py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative bg-forest-950 py-32 md:py-44 lg:py-56 overflow-hidden">
       <Container className="relative z-10">
         <motion.div
           ref={sectionRef}
@@ -26,7 +26,7 @@ export default function Infrastructure() {
           <h2
             className="font-display font-medium text-cream-50"
             style={{
-              fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
+              fontSize: "clamp(2rem, 3.75vw, 3.75rem)",
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
             }}
@@ -42,7 +42,7 @@ export default function Infrastructure() {
         </motion.div>
 
         {/* 2×2 bento photo grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[320px]">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:auto-rows-[320px] md:gap-8">
           {infrastructurePanels.map((panel, i) => (
             <motion.div
               key={panel.eyebrow}
@@ -72,7 +72,7 @@ export default function Infrastructure() {
                 }}
               />
               {/* Strengthened gradient overlay for legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-950/50 to-transparent" />
               {/* Text overlay */}
               <div className="absolute bottom-0 left-0 p-6 transition-transform duration-300 group-hover:-translate-y-1 md:p-8">
                 <span className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-kraft-500">

@@ -14,7 +14,7 @@ export default function StatsBand() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative bg-cream-50 py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section className="relative bg-cream-50 py-32 md:py-44 lg:py-56 overflow-hidden">
       <Grain />
       <Container className="relative z-10">
         <motion.div
@@ -27,7 +27,7 @@ export default function StatsBand() {
           <SectionEyebrow>The Scale of Altpac</SectionEyebrow>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-0">
+        <div className="grid grid-cols-2 gap-12 md:gap-16 lg:grid-cols-4 lg:gap-0">
           {stats.map((stat, i) => (
             <div
               key={stat.label}
@@ -40,9 +40,9 @@ export default function StatsBand() {
               <CountUp
                 target={stat.value}
                 suffix={stat.suffix}
-                className="block font-display font-light text-forest-950"
+                className="block whitespace-nowrap font-display font-light text-forest-950"
                 style={{
-                  fontSize: "clamp(4rem, 10vw, 10rem)",
+                  fontSize: "clamp(3rem, 7vw, 7rem)",
                   letterSpacing: "-0.04em",
                   lineHeight: 0.9,
                 }}

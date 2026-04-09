@@ -18,7 +18,7 @@ export default function AltpacMap() {
   return (
     <section
       id="about"
-      className="relative bg-cream-50 py-24 md:py-32 lg:py-40 overflow-hidden"
+      className="relative bg-cream-50 py-32 md:py-44 lg:py-56 overflow-hidden"
     >
       <Grain />
       <Container className="relative z-10">
@@ -33,7 +33,7 @@ export default function AltpacMap() {
           <h2
             className="font-display font-medium text-forest-950"
             style={{
-              fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
+              fontSize: "clamp(2rem, 3.75vw, 3.75rem)",
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
             }}

@@ -19,7 +19,7 @@ export default function IndustriesSplit() {
   return (
     <section
       id="industries"
-      className="relative bg-forest-950 py-24 md:py-32 lg:py-40 overflow-hidden"
+      className="relative bg-forest-950 py-32 md:py-44 lg:py-56 overflow-hidden"
     >
       <Container className="relative z-10">
         <motion.div
@@ -33,7 +33,7 @@ export default function IndustriesSplit() {
           <h2
             className="font-display font-medium text-cream-50"
             style={{
-              fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
+              fontSize: "clamp(2rem, 3.75vw, 3.75rem)",
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
             }}

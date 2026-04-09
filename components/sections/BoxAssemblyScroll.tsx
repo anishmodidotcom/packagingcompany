@@ -121,14 +121,14 @@ export default function BoxAssemblyScroll() {
   // Reduced motion: autoplay + stacked text
   if (prefersReducedMotion) {
     return (
-      <section className="relative bg-cream-50 py-24 md:py-32 lg:py-40 overflow-hidden">
+      <section className="relative bg-cream-50 py-32 md:py-44 lg:py-56 overflow-hidden">
         <Grain />
         <Container className="relative z-10">
           <SectionEyebrow className="mb-4">The Craft</SectionEyebrow>
           <h2
             className="mb-6 font-display font-medium text-forest-950"
             style={{
-              fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
+              fontSize: "clamp(2rem, 3.75vw, 3.75rem)",
               letterSpacing: "-0.02em",
               lineHeight: 1.05,
             }}
@@ -156,7 +156,7 @@ export default function BoxAssemblyScroll() {
   // Mobile: simpler layout with autoplay
   if (isMobile && mounted) {
     return (
-      <section className="relative bg-cream-50 py-24 md:py-32 overflow-hidden">
+      <section className="relative bg-cream-50 py-32 md:py-44 overflow-hidden">
         <Grain />
         <Container className="relative z-10">
           <SectionEyebrow className="mb-4">The Craft</SectionEyebrow>

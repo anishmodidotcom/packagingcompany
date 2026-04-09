@@ -326,7 +326,7 @@ export const stats = [
   { value: 5, suffix: "", label: "Plants across India" },
   { value: 70, suffix: "M+", label: "Units per month" },
   { value: 1, suffix: "M", label: "Sq ft factory space" },
-  { value: 1, suffix: " Billion", label: "Paper bags per year" },
+  { value: 1, suffix: "B+", label: "Paper bags per year" },
 ] as const;
 
 export const impactStats = [
