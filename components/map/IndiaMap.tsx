@@ -11,7 +11,7 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { plants } from "@/lib/data";
 
 const GEO_URL =
-  "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+  "https://cdn.jsdelivr.net/npm/world-atlas@3/countries-110m.json";
 
 // India ISO 3166-1 numeric code
 const INDIA_ID = "356";

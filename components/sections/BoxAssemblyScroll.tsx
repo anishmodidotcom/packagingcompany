@@ -36,59 +36,30 @@ const stages = [
   },
 ];
 
-function ReducedMotionFallback() {
+function StagesStacked() {
   return (
-    <section className="relative bg-cream-50 py-24 md:py-32 lg:py-40 overflow-hidden">
-      <Grain />
-      <Container className="relative z-10">
-        <SectionEyebrow className="mb-4">The Craft</SectionEyebrow>
-        <h2
-          className="mb-6 font-display font-medium text-forest-950"
-          style={{
-            fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.05,
-          }}
-        >
-          Watch a billion-bag manufacturer make a box.
-        </h2>
-
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <video
-              src="/box-assembly.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full rounded-3xl border border-line shadow-2xl shadow-forest-950/10"
-            />
-          </div>
-          <div className="flex flex-col gap-10">
-            {stages.map((stage) => (
-              <div key={stage.eyebrow}>
-                <span className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-kraft-500">
-                  {stage.eyebrow}
-                </span>
-                <h3
-                  className="mb-3 font-display font-medium text-forest-950"
-                  style={{
-                    fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 0.95,
-                  }}
-                >
-                  {stage.headline}
-                </h3>
-                <p className="max-w-[32ch] text-lg leading-relaxed text-ink-500">
-                  {stage.body}
-                </p>
-              </div>
-            ))}
-          </div>
+    <div className="flex flex-col gap-10">
+      {stages.map((stage) => (
+        <div key={stage.eyebrow}>
+          <span className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-kraft-500">
+            {stage.eyebrow}
+          </span>
+          <h3
+            className="mb-3 font-display font-medium text-forest-950"
+            style={{
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              letterSpacing: "-0.02em",
+              lineHeight: 0.95,
+            }}
+          >
+            {stage.headline}
+          </h3>
+          <p className="max-w-[32ch] text-lg leading-relaxed text-ink-500">
+            {stage.body}
+          </p>
         </div>
-      </Container>
-    </section>
+      ))}
+    </div>
   );
 }
 
@@ -97,15 +68,15 @@ export default function BoxAssemblyScroll() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const [scrollHintVisible, setScrollHintVisible] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Detect mobile for autoplay fallback
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    setMounted(true);
   }, []);
+
+  const isMobile = mounted
+    ? typeof window !== "undefined" && window.innerWidth < 768
+    : false;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -147,12 +118,43 @@ export default function BoxAssemblyScroll() {
 
   const textOpacities = [text1Opacity, text2Opacity, text3Opacity, text4Opacity];
 
+  // Reduced motion: autoplay + stacked text
   if (prefersReducedMotion) {
-    return <ReducedMotionFallback />;
+    return (
+      <section className="relative bg-cream-50 py-24 md:py-32 lg:py-40 overflow-hidden">
+        <Grain />
+        <Container className="relative z-10">
+          <SectionEyebrow className="mb-4">The Craft</SectionEyebrow>
+          <h2
+            className="mb-6 font-display font-medium text-forest-950"
+            style={{
+              fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.05,
+            }}
+          >
+            Watch a billion-bag manufacturer make a box.
+          </h2>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <video
+                src="/box-assembly.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full rounded-3xl border border-line shadow-2xl shadow-forest-950/10"
+              />
+            </div>
+            <StagesStacked />
+          </div>
+        </Container>
+      </section>
+    );
   }
 
-  // Mobile fallback: autoplay loop
-  if (isMobile) {
+  // Mobile: simpler layout with autoplay
+  if (isMobile && mounted) {
     return (
       <section className="relative bg-cream-50 py-24 md:py-32 overflow-hidden">
         <Grain />
@@ -176,33 +178,13 @@ export default function BoxAssemblyScroll() {
             playsInline
             className="mb-12 w-full rounded-3xl border border-line shadow-2xl shadow-forest-950/10"
           />
-          <div className="flex flex-col gap-10">
-            {stages.map((stage) => (
-              <div key={stage.eyebrow}>
-                <span className="mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-kraft-500">
-                  {stage.eyebrow}
-                </span>
-                <h3
-                  className="mb-3 font-display font-medium text-forest-950"
-                  style={{
-                    fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 0.95,
-                  }}
-                >
-                  {stage.headline}
-                </h3>
-                <p className="max-w-[32ch] text-lg leading-relaxed text-ink-500">
-                  {stage.body}
-                </p>
-              </div>
-            ))}
-          </div>
+          <StagesStacked />
         </Container>
       </section>
     );
   }
 
+  // Desktop: scroll-scrubbed video
   return (
     <section ref={sectionRef} className="relative" style={{ height: "400vh" }}>
       {/* Sticky inner container — pinned while scrolling */}
@@ -233,7 +215,11 @@ export default function BoxAssemblyScroll() {
               </span>
               <motion.span
                 animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 <ChevronDown className="h-4 w-4 text-ink-500" />
               </motion.span>
